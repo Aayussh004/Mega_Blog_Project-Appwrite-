@@ -1,15 +1,44 @@
 import conf from './conf/conf';
 import './App.css'
-
+import {useDispatch} from 'react-redux'
+import { useEffect, useState } from 'react';
+import authService from './appwrite/auth';
+import {login,logout} from './store/authSlice'
+import { Header,Footer } from './components';
 function App() {
 // console.log(import.meta.env.VITE_MYVARIABLE);
 // console.log(conf.appwriteCollectionID)
 
-  return (
-    <>
-      <h1>A blog with appwrite</h1>
-    </>
-  )
+const [loading,setLoading] = useState(true);
+const dispatch = useDispatch();//this connects redux to react basically used for sending the data to store room 
+
+// now ab ek useEffect use krenge taaki userauthentication se data store me bhej ske
+useEffect(()=>{
+  authService.getCurrentUser()
+  .then((userkadata)=>{
+    if(userkadata){//if user exist then data ko dispatch (bhej do) krdo store ke authSlice ke login method me 
+      dispatch(login({userkadata}));
+    }
+    else{
+      dispatch(logout());//if data nhi mila means user hi nhi hai to logout call krdo
+    }
+  })
+  .finally(()=> setLoading(false));
+},[])
+
+
+  return (loading ? null : (
+  <div className=' min-h-screen flex flex-wrap content-between bg-gray-400'>
+  <div className=' w-full block'>
+    <Header/>
+    <main>
+    TODO:     {/*  <Outlet/> */}
+    </main>
+    <Footer/>
+  </div>
+
+  </div>
+  ))
 }
 
 export default App
@@ -38,7 +67,14 @@ export default App
     # create an appwrite folder in src and create a file auth.js ab baaki ka explanation auth.js ke andr hai
     # iske baad appwrite ke andar hi config.js file banani hai aur database manage krna h 
   
-  # now make store folder in ./src
+  # For configuring redux in this project, make store folder in ./src
     # make store.js inside store to configure redux
     # make another file authSlice.js inside store for redux 
+
+  # configure Components for project
+    # make component folder inside ./src
+    # make a folder of Header inside components and a file Header.js
+    # make a folder of Footer inside components and a file Footer.js
+
+  # Now go to App.jsx in which if user is logged in show him something otherwise show him something else
 */
