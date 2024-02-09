@@ -3,10 +3,10 @@ import {Client,Account,ID} from "appwrite"
 
 // #Code improvement:
 //now ab aap appwrite ke documenataion me jakr code copy kr skte hai bt code improvement krke humne yha class bnake uska object bnaye hai
-//to dusri file direct object use krke method me jo bhi hai sbka access mil jayega
+//to dusri file direct object use krke method me jo bhi hai sbka access mil jayega ok!!
 
 export class AuthService{
-     client = new Client();
+     client = new Client(); 
      account;
     //  ab   constructor call kro
     constructor(){//client ke andr appwrite url and project id dedo
