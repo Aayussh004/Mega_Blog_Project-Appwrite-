@@ -1,0 +1,1 @@
+It is a blogging site where user can write a blog, the technology used in this project is react, redux toolkit, tailwind css, html, javascript. It is a completely production ready project where backend is used as a service of Appwrite. Appwrite is a plateform where we can use free backend services. Project includes high complexity react and redux usage.
