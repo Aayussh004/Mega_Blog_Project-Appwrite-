@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import authService from './appwrite/auth';
 import {login,logout} from './store/authSlice'
 import { Header,Footer } from './components';
+import { Outlet } from 'react-router-dom';
 function App() {
 // console.log(import.meta.env.VITE_MYVARIABLE);
 // console.log(conf.appwriteCollectionID)
@@ -32,11 +33,10 @@ useEffect(()=>{
   <div className=' w-full block'>
     <Header/>
     <main>
-    TODO:     {/*  <Outlet/> */}
+    TODO: <Outlet/> 
     </main>
     <Footer/>
   </div>
-
   </div>
   ))
 }
